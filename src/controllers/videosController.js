@@ -2,7 +2,7 @@ export const trending = (req, res) => {
     return res.render("home");
 }
 export const watch = (req, res) => {
-    return res.send(`Video ${req.params.id} watch`);
+    return res.render("watch");
 }
 export const edit = (req, res) => {
     return res.send(`Video ${req.params.id} edit`);
