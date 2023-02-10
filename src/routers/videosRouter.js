@@ -5,8 +5,8 @@ const videosRouter = express.Router();
 
 videosRouter.get("/search", search);
 videosRouter.get("/upload", upload);
-videosRouter.get("/:id", watch);
-videosRouter.get("/:id/edit", edit);
-videosRouter.get("/:id/remove", remove);
+videosRouter.get("/:id(\\d+)", watch);
+videosRouter.get("/:id(\\d+)/edit", edit);
+videosRouter.get("/:id(\\d+)/remove", remove);
 
 export default videosRouter;

@@ -7,6 +7,6 @@ usersRouter.get("/edit", edit);
 usersRouter.get("/remove", remove);
 usersRouter.get("/login", login);
 usersRouter.get("/logout", logout);
-usersRouter.get("/:id", see);
+usersRouter.get("/:id(\\d+)", see);
 
 export default usersRouter;
