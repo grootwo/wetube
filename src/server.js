@@ -12,6 +12,7 @@ const logger = morgan("dev");
 app.use(logger);
 
 
+app.set("view engine", "pug");
 app.use("/", globalRouter);
 app.use("/users", usersRouter);
 app.use("/videos", videosRouter);
