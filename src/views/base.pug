@@ -18,4 +18,7 @@ html(lang="ko")
             h1=pageTitle
         main
             block header
+            ul
+                each video in videos 
+                    li=video
         include partials/footer.pug
