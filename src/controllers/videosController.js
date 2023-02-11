@@ -4,7 +4,7 @@ const fakeUser = {
 }
 
 export const trending = (req, res) => {
-    const videos = [1, 2, 3, 4, 5, 6]
+    const videos = []
     return res.render("home", {pageTitle: "Home", fakeUser: fakeUser, videos: videos});
 }
 export const watch = (req, res) => {
