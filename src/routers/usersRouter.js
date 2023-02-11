@@ -5,7 +5,6 @@ const usersRouter = express.Router();
 
 usersRouter.get("/edit", edit);
 usersRouter.get("/remove", remove);
-usersRouter.get("/login", login);
 usersRouter.get("/logout", logout);
 usersRouter.get("/:id(\\d+)", see);
 

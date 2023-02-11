@@ -3,7 +3,6 @@ import { search, upload, watch, edit, remove } from "../controllers/videosContro
 
 const videosRouter = express.Router();
 
-videosRouter.get("/search", search);
 videosRouter.get("/upload", upload);
 videosRouter.get("/:id(\\d+)", watch);
 videosRouter.get("/:id(\\d+)/edit", edit);
