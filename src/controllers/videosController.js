@@ -2,9 +2,7 @@ const fakeUser = {
     name: "Hiho",
     loggedIn: true,
 }
-
-export const trending = (req, res) => {
-    const videos = [
+const videos = [
         {
             title: "First Video",
             rating: 5,
@@ -19,7 +17,7 @@ export const trending = (req, res) => {
             comments: 2,
             createdAt: "2 minutes ago",
             views: 59,
-            id: 1,
+            id: 2,
         },
         {
             title: "Third Video",
@@ -27,13 +25,17 @@ export const trending = (req, res) => {
             comments: 2,
             createdAt: "2 minutes ago",
             views: 59,
-            id: 1,
+            id: 3,
         },
-    ];
+];
+
+export const trending = (req, res) => {
     return res.render("home", {pageTitle: "Home", fakeUser: fakeUser, videos: videos});
 }
 export const watch = (req, res) => {
-    return res.render("watch", {pageTitle: "Watch"});
+    const id = req.params.id;
+    const video = videos[id - 1]
+    return res.render("watch", {pageTitle: "Watch", fakeUser: fakeUser, video: video});
 }
 export const edit = (req, res) => {
     return res.send(`Video ${req.params.id} edit`);
