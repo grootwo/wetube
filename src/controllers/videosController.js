@@ -1,7 +1,3 @@
-const fakeUser = {
-    name: "Hiho",
-    loggedIn: true,
-}
 const videos = [
         {
             title: "First Video",
@@ -30,25 +26,16 @@ const videos = [
 ];
 
 export const trending = (req, res) => {
-    return res.render("home", {pageTitle: "Home", fakeUser: fakeUser, videos: videos});
+    return res.render("home", {pageTitle: "Home", videos: videos});
 }
 export const watch = (req, res) => {
     const id = req.params.id;
     const video = videos[id - 1]
-    return res.render("watch", {pageTitle: `Watching ${video.title} video`, fakeUser: fakeUser, video: video});
+    return res.render("watch", {pageTitle: `Watching ${video.title} video`, video: video});
 }
 export const getEdit = (req, res) => {
     const id = req.params.id;
     const video = videos[id - 1]
-    return res.render("edit", {pageTitle: `Watching ${video.title} video`, fakeUser: fakeUser, video: video});
+    return res.render("edit", {pageTitle: `Watching ${video.title} video`, video: video});
 }
 export const postEdit = (req, res) => {}
-export const search = (req, res) => {
-    return res.send("Video search");
-}
-export const remove = (req, res) => {
-    return res.send(`Video ${req.params.id} remove`);
-}
-export const upload = (req, res) => {
-    return res.send("Video upload");
-}
