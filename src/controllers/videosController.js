@@ -37,11 +37,12 @@ export const watch = (req, res) => {
     const video = videos[id - 1]
     return res.render("watch", {pageTitle: `Watching ${video.title} video`, fakeUser: fakeUser, video: video});
 }
-export const edit = (req, res) => {
+export const getEdit = (req, res) => {
     const id = req.params.id;
     const video = videos[id - 1]
     return res.render("edit", {pageTitle: `Watching ${video.title} video`, fakeUser: fakeUser, video: video});
 }
+export const postEdit = (req, res) => {}
 export const search = (req, res) => {
     return res.send("Video search");
 }
