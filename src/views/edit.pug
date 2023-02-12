@@ -2,6 +2,6 @@ extends base.pug
 
 block contents 
     h3  Change title of the video
-    form(method=POST)
+    form(method="POST")
         input(name="title" type="text", placeholder="Edit title", value=`${video.title}` required)
         input(type="submit", value="Save")
