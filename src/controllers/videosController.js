@@ -1,4 +1,7 @@
+import Video from "../model/Video";
+
 export const homr = (req, res) => {
+    Video.find({}, (error, videos) => {});
     return res.render("home", {pageTitle: "Home", videos: videos});
 }
 export const watch = (req, res) => {
