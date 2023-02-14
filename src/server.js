@@ -1,4 +1,5 @@
 import "./db.js";
+import "./model/Video.js"
 import express from "express";
 import morgan from "morgan";
 import globalRouter from "./routers/globalRouter";
