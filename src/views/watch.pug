@@ -5,5 +5,8 @@ block contents
     p=video.description 
     div
         small=video.createdAt
+        ul 
+            each hashtag in video.hashtags
+                li=hashtag
         span #{video.meta.views} #{video.meta.views === 1 ? "view" : "views"}
     a(href=`${video.id}/edit`) edit &rarr;
