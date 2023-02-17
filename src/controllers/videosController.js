@@ -8,9 +8,10 @@ export const home = async(req, res) => {
         console.log("error: ", error);
     }
 }
-export const watch = (req, res) => {
-    const id = req.params.id;
-    return res.render("watch", {pageTitle: `Watching video` });
+export const watch = async (req, res) => {
+    const { id } = req.params;
+    const video = await Video.findById(id);
+    return res.render("watch", {pageTitle: video.title, video });
 }
 export const getEdit = (req, res) => {
     const id = req.params.id;
