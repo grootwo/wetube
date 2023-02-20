@@ -31,7 +31,7 @@ export const remove = (req, res) => {
   return res.send("User remove");
 };
 export const login = (req, res) => {
-  return res.send("User login");
+  return res.render("login", { pageTitle: "Login" });
 };
 export const logout = (req, res) => {
   return res.send("User logout");
