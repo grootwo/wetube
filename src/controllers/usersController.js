@@ -24,14 +24,26 @@ export const postJoin = async (req, res) => {
   });
   return res.redirect("/login");
 };
+export const getLogin = (req, res) => {
+  return res.render("login", { pageTitle: "Login" });
+};
+export const postLogin = async (req, res) => {
+  // check if user exists
+  const { username, password } = req.body;
+  const exists = await User.exists({ username });
+  if (!exists) {
+    return res.render("login", {
+      pageTitle: "Login",
+      errorMsg: "User doesn't exist",
+    });
+  }
+  return res.end();
+};
 export const edit = (req, res) => {
   return res.send("User edit");
 };
 export const remove = (req, res) => {
   return res.send("User remove");
-};
-export const login = (req, res) => {
-  return res.render("login", { pageTitle: "Login" });
 };
 export const logout = (req, res) => {
   return res.send("User logout");
