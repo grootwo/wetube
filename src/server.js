@@ -15,9 +15,18 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   session({
-    secret: "hello",
+    secret: "Hello!",
+    resave: true,
+    saveUninitialized: true,
   })
 );
+
+app.use((req, res, next) => {
+  req.sessionStore.all((error, sessions) => {
+    console.log(sessions);
+    next();
+  });
+});
 
 app.use("/", rootRouter);
 app.use("/users", usersRouter);
