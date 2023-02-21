@@ -14,8 +14,16 @@ html(lang="ko")
                         a(href="/videos/upload") Upload
                     li 
                         a(href="/search") Search
-                    li 
-                        a(href="/join") Join
+                    if loggedIn 
+                        li
+                            a(href="/logout") Logout
+                        li
+                            a(href="/edit-profile") #{loggedInUser.name}'s profile
+                    else 
+                        li 
+                            a(href="/join") Join
+                        li 
+                            a(href="/login") Login
         main
             block contents
         include partials/footer.pug
