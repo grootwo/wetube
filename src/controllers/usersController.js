@@ -58,7 +58,7 @@ export const startGithubLogin = (req, res) => {
   };
   const params = new URLSearchParams(config).toString();
   const finalUrl = `${baseUrl}?${params}`;
-  return res.redirect("/users/github/finish");
+  return res.redirect(finalUrl);
 };
 export const finishGithubLogin = (req, res) => {};
 export const edit = (req, res) => {
