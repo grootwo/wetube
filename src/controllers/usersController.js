@@ -49,6 +49,18 @@ export const postLogin = async (req, res) => {
   req.session.user = user;
   return res.redirect("/");
 };
+export const startGithubLogin = (req, res) => {
+  const baseUrl = "https://github.com/login/oauth/authorize";
+  const config = {
+    client_id: "8af1dc42b0da2e13e0a2",
+    allow_signup: false,
+    scope: "read:user user:email",
+  };
+  const params = new URLSearchParams(config).toString();
+  const finalUrl = `${baseUrl}?${params}`;
+  return res.redirect("/users/github/finish");
+};
+export const finishGithubLogin = (req, res) => {};
 export const edit = (req, res) => {
   return res.send("User edit");
 };
