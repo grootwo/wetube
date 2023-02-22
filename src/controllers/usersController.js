@@ -1,9 +1,11 @@
 import bcrypt from "bcrypt";
+import fetch from "cross-fetch";
 import User from "../model/User";
 
 export const getJoin = (req, res) => {
   return res.render("join", { pageTitle: "Join" });
 };
+
 export const postJoin = async (req, res) => {
   const { email, username, password, password1, name, location } = req.body;
   const pageTitle = "Join";
@@ -25,9 +27,11 @@ export const postJoin = async (req, res) => {
   });
   return res.redirect("/login");
 };
+
 export const getLogin = (req, res) => {
   return res.render("login", { pageTitle: "Login" });
 };
+
 export const postLogin = async (req, res) => {
   const pageTitle = "Login";
   const { username, password } = req.body;
@@ -49,6 +53,7 @@ export const postLogin = async (req, res) => {
   req.session.user = user;
   return res.redirect("/");
 };
+
 export const startGithubLogin = (req, res) => {
   const baseUrl = "https://github.com/login/oauth/authorize";
   const config = {
@@ -60,6 +65,7 @@ export const startGithubLogin = (req, res) => {
   const finalUrl = `${baseUrl}?${params}`;
   return res.redirect(finalUrl);
 };
+
 export const finishGithubLogin = async (req, res) => {
   const baseUrl = "https://github.com/login/oauth/access_token";
   const config = {
@@ -69,14 +75,27 @@ export const finishGithubLogin = async (req, res) => {
   };
   const params = new URLSearchParams(config).toString();
   const finalUrl = `${baseUrl}?${params}`;
-  const data = await fetch(finalUrl, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-    },
-  });
-  const json = await data.json();
-  console.log(json);
+  const tokenRequest = await (
+    await fetch(finalUrl, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+    })
+  ).json();
+  if ("access_token" in tokenRequest) {
+    const { access_token } = tokenRequest;
+    const userRequest = awiat(
+      await fetch("https://api.github.com/user", {
+        headers: {
+          Authorization: `token ${access_token}`,
+        },
+      })
+    ).json();
+    console.log(userRequest);
+  } else {
+    return res.redirect("/login");
+  }
 };
 export const edit = (req, res) => {
   return res.send("User edit");
