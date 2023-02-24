@@ -1,6 +1,7 @@
 extends base.pug
 
 block contents
+    img(src="/" + loggedInUser.avatarUrl, height="100", width="100")
     form(method="POST", enctype="multipart/form-data")
         input(name="email", type="email", placeholder="Email", value=loggedInUser.email, required)
         input(name="name", type="text", placeholder="Name", value=loggedInUser.name, required)
