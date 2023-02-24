@@ -10,7 +10,11 @@ import {
   logout,
   see,
 } from "../controllers/usersController";
-import { loggedInOnlyMiddleware, publicOnlyMiddleware } from "../middlewares";
+import {
+  loggedInOnlyMiddleware,
+  publicOnlyMiddleware,
+  uploadFiles,
+} from "../middlewares";
 
 const usersRouter = express.Router();
 
@@ -18,7 +22,7 @@ usersRouter
   .route("/edit")
   .all(loggedInOnlyMiddleware)
   .get(getEdit)
-  .post(postEdit);
+  .post(uploadFiles.single("avatar"), postEdit);
 usersRouter
   .route("/change-password")
   .all(loggedInOnlyMiddleware)
