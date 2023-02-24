@@ -8,15 +8,19 @@ import {
   logout,
   see,
 } from "../controllers/usersController";
+import { loggedInOnlyMiddleware, publicOnlyMiddleware } from "../middlewares";
 
 const usersRouter = express.Router();
 
-usersRouter.route("/edit").get(getEdit).post(postEdit);
-usersRouter.get("/edit", getEdit);
+usersRouter
+  .route("/edit")
+  .all(loggedInOnlyMiddleware)
+  .get(getEdit)
+  .post(postEdit);
 usersRouter.get("/remove", remove);
-usersRouter.get("/logout", logout);
-usersRouter.get("/github/start", startGithubLogin);
-usersRouter.get("/github/finish", finishGithubLogin);
+usersRouter.get("/logout", loggedInOnlyMiddleware, logout);
+usersRouter.get("/github/start", publicOnlyMiddleware, startGithubLogin);
+usersRouter.get("/github/finish", publicOnlyMiddleware, finishGithubLogin);
 usersRouter.get("/:id(\\d+)", see);
 
 export default usersRouter;
