@@ -142,13 +142,18 @@ export const postEdit = async (req, res) => {
     },
     body: { email, name, avatarUrl, location },
   } = req;
-  await User.findByIdAndUpdate(_id, {
-    email,
-    name,
-    avatarUrl,
-    location,
-  });
-  return res.render("edit-profile");
+  const updatedUser = await User.findByIdAndUpdate(
+    _id,
+    {
+      email,
+      name,
+      avatarUrl,
+      location,
+    },
+    { new: true }
+  );
+  req.session.user = updatedUser;
+  return res.redirect("/users/edit");
 };
 export const remove = (req, res) => {
   return res.send("User remove");
