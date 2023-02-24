@@ -1,6 +1,7 @@
 import express from "express";
 import {
-  edit,
+  getEdit,
+  postEdit,
   remove,
   startGithubLogin,
   finishGithubLogin,
@@ -10,7 +11,8 @@ import {
 
 const usersRouter = express.Router();
 
-usersRouter.get("/edit", edit);
+usersRouter.route("/edit").get(getEdit).post(postEdit);
+usersRouter.get("/edit", getEdit);
 usersRouter.get("/remove", remove);
 usersRouter.get("/logout", logout);
 usersRouter.get("/github/start", startGithubLogin);
