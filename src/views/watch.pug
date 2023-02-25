@@ -7,11 +7,12 @@ block contents
     div
         small=video.createdAt
         br
-        small Uploaded by #{owner.name}
+        small Uploaded by 
+        a(href=`/users/${video.owner._id}`)=video.owner.name
         ul 
             each hashtag in video.hashtags
                 li=hashtag
         span #{video.meta.views} #{video.meta.views === 1 ? "view" : "views"}
-    if String(loggedInUser._id) === String(video.owner)
+    if String(loggedInUser._id) === String(video.owner._id)
         a(href=`${video.id}/edit`) Edit &rarr;
         a(href=`${video.id}/delete`) Delete &rarr;
