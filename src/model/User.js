@@ -9,6 +9,7 @@ const userSchema = mongoose.Schema({
   avatarUrl: String,
   password: { type: String },
   location: String,
+  videos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Video" }],
 });
 
 userSchema.pre("save", async function () {
