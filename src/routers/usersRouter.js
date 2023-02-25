@@ -32,6 +32,6 @@ usersRouter.get("/remove", remove);
 usersRouter.get("/logout", loggedInOnlyMiddleware, logout);
 usersRouter.get("/github/start", publicOnlyMiddleware, startGithubLogin);
 usersRouter.get("/github/finish", publicOnlyMiddleware, finishGithubLogin);
-usersRouter.get("/:id(\\d+)", see);
+usersRouter.get("/:id", see);
 
 export default usersRouter;

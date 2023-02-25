@@ -18,7 +18,9 @@ html(lang="ko")
                         li
                             a(href="/users/logout") Logout
                         li
-                            a(href="/users/edit") #{loggedInUser.name}'s profile
+                            a(href=`/users/${loggedInUser._id}`) #{loggedInUser.name}'s profile
+                        li 
+                            a(href="/users/edit") Edit profile
                     else 
                         li 
                             a(href="/join") Join
