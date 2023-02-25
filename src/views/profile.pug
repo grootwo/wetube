@@ -1,4 +1,8 @@
 extends base.pug
+include mixins/video
 
 block contents 
-    h1 This is #{user.name}'s profile
+    each video in videos 
+        +video(video)
+    else
+        h3 There is no video
