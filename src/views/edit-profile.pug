@@ -6,7 +6,7 @@ block contents
         input(name="email", type="email", placeholder="Email", value=loggedInUser.email, required)
         input(name="name", type="text", placeholder="Name", value=loggedInUser.name, required)
         label(for="avatar") Avatar
-        input(name="avatar", type="file", placeholder="Avatar", accept="image/*", required)
+        input(name="avatar", type="file", placeholder="Avatar", accept="image/*")
         input(name="location", type="text", placeholder="Location", value=loggedInUser.location)
         input(type="submit", value="Update Profile")
     if !loggedInUser.socialOnly 
