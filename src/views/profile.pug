@@ -2,7 +2,7 @@ extends base.pug
 include mixins/video
 
 block contents 
-    each video in videos 
+    each video in user.videos 
         +video(video)
     else
         h3 There is no video
