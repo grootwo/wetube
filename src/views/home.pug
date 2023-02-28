@@ -2,8 +2,8 @@ extends base.pug
 include mixins/video
 
 block contents
-    h1 You can see trending videos
-    each item in videos 
-        +video(item)
-    else 
-        h3 There is no video
+    div.video-grid
+        each video in videos
+            +video(video)
+        else
+            span.empty__message No videos found

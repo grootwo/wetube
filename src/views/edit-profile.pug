@@ -10,4 +10,5 @@ block contents
         input(name="location", type="text", placeholder="Location", value=loggedInUser.location)
         input(type="submit", value="Update Profile")
     if !loggedInUser.socialOnly 
-        a(href="/users/change-password") Change Password &rarr;
+        div.edit-profile__password
+                a(href="change-password") Change Password &rarr;
