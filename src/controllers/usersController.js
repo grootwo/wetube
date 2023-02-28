@@ -19,14 +19,21 @@ export const postJoin = async (req, res) => {
     const errorMsg = "Password confirmation does not match";
     return res.status(400).render("join", { pageTitle, errorMsg });
   }
-  await User.create({
-    email,
-    username,
-    password,
-    name,
-    location,
-  });
-  return res.redirect("/login");
+  try {
+    await User.create({
+      email,
+      username,
+      password,
+      name,
+      location,
+    });
+    return res.redirect("/login");
+  } catch (error) {
+    return res.status(400).render("join", {
+      pageTitle,
+      errorMessage: error._message,
+    });
+  }
 };
 
 export const getLogin = (req, res) => {
@@ -94,7 +101,6 @@ export const finishGithubLogin = async (req, res) => {
         },
       })
     ).json();
-    console.log(userData);
     const emailData = await (
       await fetch(`${apiUrl}/user/emails`, {
         headers: {
@@ -160,6 +166,9 @@ export const postEdit = async (req, res) => {
 };
 
 export const getChangePw = (req, res) => {
+  if (req.session.user.socialOnly === true) {
+    return res.redirect("/");
+  }
   return res.render("change-password", { pageTitle: "Change Password" });
 };
 
@@ -196,9 +205,5 @@ export const see = async (req, res) => {
   if (!user) {
     return res.status(404).render("404", { pageTitle: "User not found" });
   }
-  return res.render("profile", { pageTitle: user.name, user });
-};
-
-export const remove = (req, res) => {
-  return res.send("User remove");
+  return res.render("users/profile", { pageTitle: user.name, user });
 };
