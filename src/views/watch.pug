@@ -2,17 +2,21 @@ extends base.pug
 
 block contents
     video(src="/" + video.fileUrl, controls)
-    h1=video.title
-    p=video.description 
-    div
-        small=video.createdAt
-        br
-        small Uploaded by 
-        a(href=`/users/${video.owner._id}`)=video.owner.name
-        ul 
-            each hashtag in video.hashtags
-                li=hashtag
-        span #{video.meta.views} #{video.meta.views === 1 ? "view" : "views"}
-    if String(loggedInUser._id) === String(video.owner._id)
-        a(href=`${video.id}/edit`) Edit &rarr;
-        a(href=`${video.id}/delete`) Delete &rarr;
+    //- 
+        h1=video.title
+        p=video.description 
+        div
+            small=video.createdAt
+            br
+            small Uploaded by 
+            a(href=`/users/${video.owner._id}`)=video.owner.name
+            ul 
+                each hashtag in video.hashtags
+                    li=hashtag
+            span #{video.meta.views} #{video.meta.views === 1 ? "view" : "views"}
+        if String(loggedInUser._id) === String(video.owner._id)
+            a(href=`${video.id}/edit`) Edit &rarr;
+            a(href=`${video.id}/delete`) Delete &rarr;
+
+block scripts
+    script(src="/static/js/videoPlayer.js") 
