@@ -4,7 +4,6 @@ import {
   postEdit,
   getChangePw,
   postChangePw,
-  remove,
   startGithubLogin,
   finishGithubLogin,
   logout,
@@ -28,7 +27,6 @@ usersRouter
   .all(loggedInOnlyMiddleware)
   .get(getChangePw)
   .post(postChangePw);
-usersRouter.get("/remove", remove);
 usersRouter.get("/logout", loggedInOnlyMiddleware, logout);
 usersRouter.get("/github/start", publicOnlyMiddleware, startGithubLogin);
 usersRouter.get("/github/finish", publicOnlyMiddleware, finishGithubLogin);
