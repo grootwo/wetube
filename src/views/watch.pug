@@ -2,6 +2,10 @@ extends base.pug
 
 block contents
     video(src="/" + video.fileUrl, controls)
+    button#play Play
+    span#time 00:00/00:00
+    button#mute Mute
+    input(type="range", step="0.05", max="1", min="0")#volume
     //- 
         h1=video.title
         p=video.description 
