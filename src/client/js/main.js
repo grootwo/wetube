@@ -1,3 +1,3 @@
 import "../scss/style.scss";
 
-alert("This is alert from main.js");
+console.log("This is alert from main.js");
