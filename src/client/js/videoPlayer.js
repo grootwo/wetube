@@ -1,12 +1,15 @@
 const video = document.querySelector("video");
 const playBtn = document.getElementById("play");
+const playIcon = playBtn.querySelector("i");
 const muteBtn = document.getElementById("mute");
+const muteIcon = muteBtn.querySelector("i");
 const time = document.getElementById("time");
 const volumeRange = document.getElementById("volume");
 const currentTime = document.getElementById("currentTime");
 const totalTime = document.getElementById("totalTime");
 const timeline = document.getElementById("timeline");
 const fullscreenBtn = document.getElementById("fullscreenBtn");
+const fullscreenIcon = fullscreenBtn.querySelector("i");
 const videoContainer = document.getElementById("videoContainer");
 const videoControls = document.getElementById("videoControls");
 
@@ -25,7 +28,7 @@ const handlePlayClick = (e) => {
   } else {
     video.pause();
   }
-  playBtn.innerText = video.paused ? "Play" : "Pause";
+  playIcon.classList = video.paused ? "fas fa-play" : "fas fa-pause";
 };
 
 const handleMute = (e) => {
@@ -34,7 +37,9 @@ const handleMute = (e) => {
   } else {
     video.muted = true;
   }
-  muteBtn.innerText = video.muted ? "Unmute" : "Mute";
+  muteIcon.classList = video.muted
+    ? "fas fa-volume-up fa-lg"
+    : "fas fa-volume-mute fa-lg";
   volumeRange.value = video.muted ? 0 : volumeValue;
 };
 
@@ -42,7 +47,7 @@ const handleVolumeInput = (e) => {
   const changedValue = e.target.value;
   if (video.muted) {
     video.muted = false;
-    muteBtn.innerText = "Mute";
+    muteIcon.classList = "fas fa-volume-mute fa-lg";
   }
   volumeValue = changedValue;
   video.volume = changedValue;
@@ -67,10 +72,10 @@ const handleFullscreenClick = () => {
   const fullscreenElement = document.fullscreenElement;
   if (fullscreenElement) {
     document.exitFullscreen();
-    fullscreenBtn.innerText = "Enter Fullscreen";
+    fullscreenIcon.classList = "fas fa-expand fa-lg";
   } else {
     videoContainer.requestFullscreen();
-    fullscreenBtn.innerText = "Exit Fullscreen";
+    fullscreenIcon.classList = "fas fa-compress fa-lg";
   }
 };
 
@@ -104,3 +109,4 @@ timeline.addEventListener("input", handleTimelineInput);
 fullscreenBtn.addEventListener("click", handleFullscreenClick);
 video.addEventListener("mousemove", handleMouseMove);
 video.addEventListener("mouseleave", handleMouseLeave);
+video.addEventListener("click", handleVideoClick);
