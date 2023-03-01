@@ -3,15 +3,16 @@ extends base.pug
 block contents
     div#videoContainer
         video(src="/" + video.fileUrl)
-        button#play Play
-        div 
-            span#currentTime 00:00:00
-            span  / 
-            span#totalTime 00:00:00
-        button#mute Mute
-        input(type="range", step="0.05", value=0.5, max="1", min="0")#volume
-        input(type="range", step="1", min="0", value="0")#timeline
-        button#fullscreenBtn Enter Fullscreen
+        div#videoControls
+            button#play Play
+            div 
+                span#currentTime 00:00:00
+                span  / 
+                span#totalTime 00:00:00
+            button#mute Mute
+            input(type="range", step="0.05", value=0.5, max="1", min="0")#volume
+            input(type="range", step="1", min="0", value="0")#timeline
+            button#fullscreenBtn Enter Fullscreen
     //- 
         h1=video.title
         p=video.description 
