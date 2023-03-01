@@ -109,6 +109,10 @@ const handleMouseLeave = () => {
   timeoutLeaveId = setTimeout(hideControls, 1000);
 };
 
+const handleVideoEnd = () => {
+  const { videoId } = video.dataset.videoid;
+};
+
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeInput);
@@ -125,3 +129,4 @@ document.addEventListener("keyup", (event) => {
     handlePlayClick();
   }
 });
+video.addEventListener("ended", handleVideoEnd);
