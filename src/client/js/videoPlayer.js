@@ -110,7 +110,10 @@ const handleMouseLeave = () => {
 };
 
 const handleVideoEnd = () => {
-  const { videoId } = video.dataset.videoid;
+  const videoId = video.dataset.videoid;
+  fetch(`/api/videos/${videoId}/views`, {
+    method: "POST",
+  });
 };
 
 playBtn.addEventListener("click", handlePlayClick);
