@@ -63,7 +63,7 @@ const handleVolumeInput = (e) => {
 };
 
 const handleVideoLoadedmetadata = () => {
-  totalTime.innerText = formatTime(video.duration);
+  totalTime.innerText = formatTime(Math.floor(video.duration));
   timeline.max = Math.floor(video.duration);
 };
 
