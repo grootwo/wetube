@@ -3,7 +3,9 @@ extends base.pug
 block contents 
     if errorMsg 
         span=errorMsg
-    button#recordBtn Start record
+    div
+        video#preview
+        button#recordBtn Start record
     form(method="POST", action="/videos/upload", enctype="multipart/form-data")
         input(name="video", type="file", accept="video/*", required)
         input(name="title", type="text", placeholder="Title", required, maxlength=30)
