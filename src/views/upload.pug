@@ -7,7 +7,10 @@ block contents
         video#preview
         button#recordBtn Start record
     form(method="POST", action="/videos/upload", enctype="multipart/form-data")
-        input(name="video", type="file", accept="video/*", required)
+        label(for="video") Upload Video
+        input(name="video", type="file", accept="video/*", required, id="video")
+        label(for="thumbnail") Upload thumbnail
+        input(name="thumbnail", type="file", accept="image/*", required, id="thumbnail")
         input(name="title", type="text", placeholder="Title", required, maxlength=30)
         input(name="description", type="text", placeholder="Description", required, maxlength=100)
         input(name="hashtags", type="text", placeholder="Hashtags, separated by comma", required)
