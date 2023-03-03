@@ -6,6 +6,20 @@ let stream;
 let recorder;
 let videoFile;
 
+const fileName = {
+  input: "recording.webm",
+  output: "output.mp4",
+  thumbnail: "thumbnail.jpg",
+};
+
+const makeAAndDownload = (fileUrl, downloadName) => {
+  const a = document.createElement("a");
+  a.href = fileUrl;
+  a.download = downloadName;
+  document.body.appendChild(a);
+  a.click();
+};
+
 const handleRecordStart = () => {
   recordBtn.innerText = "Stop Record";
   recordBtn.removeEventListener("click", handleRecordStart);
@@ -31,30 +45,21 @@ const handleRecordEnd = () => {
 const handleRecordDownload = async () => {
   const ffmpeg = createFFmpeg({ log: true });
   await ffmpeg.load();
-  ffmpeg.FS("writeFile", "recording.webm", await fetchFile(videoFile));
-  await ffmpeg.run("-i", "recording.webm", "-r", "60", "output.mp4");
-  await ffmpeg.run("-i", "recording.webm", "-ss", "00:00:01", "thumbnail.jpg");
-  const mp4File = ffmpeg.FS("readFile", "output.mp4");
+  ffmpeg.FS("writeFile", fileName.input, await fetchFile(videoFile));
+  await ffmpeg.run("-i", fileName.input, "-r", "60", fileName.output);
+  await ffmpeg.run("-i", fileName.input, "-ss", "00:00:01", "thumbnail.jpg");
+  const mp4File = ffmpeg.FS("readFile", fileName.output);
   const thumbfile = ffmpeg.FS("readFile", "thumbnail.jpg");
   const mp4Blob = new Blob([mp4File.buffer], { type: "video/mp4" });
   const thumbBlob = new Blob([thumbfile.buffer], { type: "image/jpg" });
   const mp4Url = URL.createObjectURL(mp4Blob);
   const jpgUrl = URL.createObjectURL(thumbBlob);
 
-  const a = document.createElement("a");
-  a.href = mp4Url;
-  a.download = "recordingFile.mp4";
-  document.body.appendChild(a);
-  a.click();
+  makeAAndDownload(mp4Url, "recordingFile.mp4");
+  makeAAndDownload(jpgUrl, "thumbnail.jpg");
 
-  const thumbA = document.createElement("a");
-  thumbA.href = jpgUrl;
-  thumbA.download = "thumbnail.jpg";
-  document.body.appendChild(thumbA);
-  thumbA.click();
-
-  ffmpeg.FS("unlink", "recording.webm");
-  ffmpeg.FS("unlink", "output.mp4");
+  ffmpeg.FS("unlink", fileName.input);
+  ffmpeg.FS("unlink", fileName.output);
   ffmpeg.FS("unlink", "thumbnail.jpg");
 
   URL.revokeObjectURL(mp4Url);
