@@ -21,9 +21,9 @@ const makeAAndDownload = (fileUrl, downloadName) => {
 };
 
 const handleRecordStart = () => {
-  recordBtn.innerText = "Stop Record";
+  recordBtn.innerText = "Recording";
+  recordBtn.disabled = true;
   recordBtn.removeEventListener("click", handleRecordStart);
-  recordBtn.addEventListener("click", handleRecordEnd);
   recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
   recorder.ondataavailable = (e) => {
     videoFile = URL.createObjectURL(e.data);
@@ -31,15 +31,14 @@ const handleRecordStart = () => {
     videoPreview.src = videoFile;
     videoPreview.loop = true;
     videoPreview.play();
+    recordBtn.innerText = "Download Record";
+    recordBtn.addEventListener("click", handleRecordDownload);
+    recordBtn.disabled = false;
   };
   recorder.start();
-};
-
-const handleRecordEnd = () => {
-  recorder.stop();
-  recordBtn.innerText = "Download Record";
-  recordBtn.removeEventListener("click", handleRecordEnd);
-  recordBtn.addEventListener("click", handleRecordDownload);
+  setTimeout(() => {
+    recorder.stop();
+  }, 5000);
 };
 
 const handleRecordDownload = async () => {
