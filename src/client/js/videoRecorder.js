@@ -43,6 +43,9 @@ const handleRecordEnd = () => {
 };
 
 const handleRecordDownload = async () => {
+  recordBtn.innerText = "Transcoding...";
+  recordBtn.disabled = true;
+
   const ffmpeg = createFFmpeg({ log: true });
   await ffmpeg.load();
   ffmpeg.FS("writeFile", fileName.input, await fetchFile(videoFile));
@@ -63,8 +66,13 @@ const handleRecordDownload = async () => {
   ffmpeg.FS("unlink", "thumbnail.jpg");
 
   URL.revokeObjectURL(mp4Url);
-  URL.revokeObjectURL(thumbUrl);
+  URL.revokeObjectURL(jpgUrl);
   URL.revokeObjectURL(videoFile);
+
+  recordBtn.removeEventListener("click", handleRecordDownload);
+  recordBtn.innerText = "Record again";
+  recordBtn.addEventListener("click", handleRecordStart);
+  recordBtn.disabled = false;
 };
 
 const setPreview = async () => {
