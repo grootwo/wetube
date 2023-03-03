@@ -77,7 +77,7 @@ const handleRecordDownload = async () => {
 const setPreview = async () => {
   stream = await navigator.mediaDevices.getUserMedia({
     audio: false,
-    video: { width: 600, height: 450 },
+    video: { width: 640, height: 360 },
   });
   console.log(stream);
   videoPreview.srcObject = stream;
