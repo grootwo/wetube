@@ -49,7 +49,7 @@ const handleRecordDownload = async () => {
 
   const thumbA = document.createElement("a");
   thumbA.href = jpgUrl;
-  thumbA.download = "thumbnail.mp4";
+  thumbA.download = "thumbnail.jpg";
   document.body.appendChild(thumbA);
   thumbA.click();
 };
