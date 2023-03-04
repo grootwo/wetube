@@ -60,7 +60,6 @@ export const postLogin = async (req, res) => {
   }
   req.session.loggedIn = true;
   req.session.user = user;
-  req.flash("info", "Done");
   return res.redirect("/");
 };
 
@@ -140,7 +139,9 @@ export const finishGithubLogin = async (req, res) => {
 };
 
 export const logout = (req, res) => {
-  req.session.destroy();
+  req.session.loggedIn = false;
+  req.session.user = null;
+  res.locals.loggedInUser = req.session.user;
   req.flash("info", "Done");
   return res.redirect("/");
 };
