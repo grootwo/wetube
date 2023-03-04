@@ -27,6 +27,7 @@ export const postJoin = async (req, res) => {
       name,
       location,
     });
+    req.flash("info", "Done");
     return res.redirect("/login");
   } catch (error) {
     return res.status(400).render("join", {
@@ -59,6 +60,7 @@ export const postLogin = async (req, res) => {
   }
   req.session.loggedIn = true;
   req.session.user = user;
+  req.flash("info", "Done");
   return res.redirect("/");
 };
 
@@ -112,6 +114,7 @@ export const finishGithubLogin = async (req, res) => {
       (email) => email.primary === true && email.verified === true
     );
     if (!emailObj) {
+      req.flash("error", "Not authorized");
       return res.redirect("/login");
     }
     let user = await User.findOne({ email: emailObj.email });
@@ -128,14 +131,17 @@ export const finishGithubLogin = async (req, res) => {
     }
     req.session.loggedIn = true;
     req.session.user = user;
+    req.flash("info", "Done");
     return res.redirect("/");
   } else {
+    req.flash("error", "Not authorized");
     return res.redirect("/login");
   }
 };
 
 export const logout = (req, res) => {
   req.session.destroy();
+  req.flash("info", "Done");
   return res.redirect("/");
 };
 
@@ -162,11 +168,13 @@ export const postEdit = async (req, res) => {
     { new: true }
   );
   req.session.user = updatedUser;
+  req.flash("info", "Done");
   return res.redirect("/users/edit");
 };
 
 export const getChangePw = (req, res) => {
   if (req.session.user.socialOnly === true) {
+    req.flash("error", "Not authorized");
     return res.redirect("/");
   }
   return res.render("change-password", { pageTitle: "Change Password" });
@@ -196,6 +204,7 @@ export const postChangePw = async (req, res) => {
   }
   user.password = newPw;
   await user.save();
+  req.flash("info", "Done");
   return res.redirect("/users/logout");
 };
 
