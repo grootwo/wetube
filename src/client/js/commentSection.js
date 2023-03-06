@@ -6,11 +6,15 @@ const handleCommentSubmit = (event) => {
   const textarea = commentForm.querySelector("textarea");
   const text = textarea.value;
   const videoId = video.dataset.videoid;
+  if (text === "") {
+    return;
+  }
   fetch(`/api/videos/${videoId}/comment`, {
     method: "POST",
-    body: {
-      text,
+    headers: {
+      "Content-type": "application/json",
     },
+    body: JSON.stringify({ text }),
   });
 };
 
