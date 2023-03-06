@@ -16,6 +16,7 @@ const handleCommentSubmit = (event) => {
     },
     body: JSON.stringify({ text }),
   });
+  textarea.value = "";
 };
 
 if (commentForm) {
