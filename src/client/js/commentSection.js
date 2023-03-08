@@ -1,7 +1,7 @@
 const video = document.querySelector("video");
 const commentForm = document.getElementById("commentForm");
 
-const handleCommentSubmit = (event) => {
+const handleCommentSubmit = async (event) => {
   event.preventDefault();
   const textarea = commentForm.querySelector("textarea");
   const text = textarea.value;
@@ -9,7 +9,7 @@ const handleCommentSubmit = (event) => {
   if (text === "") {
     return;
   }
-  fetch(`/api/videos/${videoId}/comment`, {
+  await fetch(`/api/videos/${videoId}/comment`, {
     method: "POST",
     headers: {
       "Content-type": "application/json",
@@ -17,6 +17,7 @@ const handleCommentSubmit = (event) => {
     body: JSON.stringify({ text }),
   });
   textarea.value = "";
+  window.location.reload();
 };
 
 if (commentForm) {

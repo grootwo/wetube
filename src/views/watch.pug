@@ -34,10 +34,15 @@ block contents
             a(href=`${video.id}/edit`) Edit &rarr;
             a(href=`${video.id}/delete`) Delete &rarr;
     if loggedIn
-        div.video__comments
+        div.video__add-comments
             form.video__comment-form#commentForm
                 textarea(cols="30", rows="10", placeholder="Write a Comment..")
                 button Add comment 
+    div.video__comments
+        ul
+            each comment in video.comments.reverse()
+                li 
+                    span=comment.text
 
 block scripts
     script(src="/static/js/videoPlayer.js") 
