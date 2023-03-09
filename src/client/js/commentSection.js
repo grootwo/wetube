@@ -4,8 +4,8 @@ const commentList = document.querySelector(".video__comments__ul");
 
 const addComment = (text, id) => {
   const li = document.createElement("li");
-  li.dataset.id = id;
   li.className = "video__comment";
+  li.dataset.id = id;
   const textSpan = document.createElement("span");
   textSpan.innerText = text;
   const deleteSpan = document.createElement("span");

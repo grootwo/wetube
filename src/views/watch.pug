@@ -41,7 +41,7 @@ block contents
     div.video__comments
         ul.video__comments__ul
             each comment in video.comments.reverse()
-                li.video__comment 
+                li.video__comment(data-id=comment.id) 
                     span=comment.text
                     span X
 
