@@ -39,7 +39,7 @@ block contents
                 textarea(cols="30", rows="10", placeholder="Write a Comment..")
                 button Add comment 
     div.video__comments
-        ul
+        ul.video__comments__ul
             each comment in video.comments.reverse()
                 li 
                     span=comment.text

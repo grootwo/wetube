@@ -1,5 +1,14 @@
 const video = document.querySelector("video");
 const commentForm = document.getElementById("commentForm");
+const commentList = document.querySelector(".video__comments__ul");
+
+const addComment = (text) => {
+  const li = document.createElement("li");
+  const span = document.createElement("span");
+  span.innerText = text;
+  li.appendChild(span);
+  commentList.prepend(li);
+};
 
 const handleCommentSubmit = async (event) => {
   event.preventDefault();
@@ -9,7 +18,7 @@ const handleCommentSubmit = async (event) => {
   if (text === "") {
     return;
   }
-  await fetch(`/api/videos/${videoId}/comment`, {
+  const { status } = await fetch(`/api/videos/${videoId}/comment`, {
     method: "POST",
     headers: {
       "Content-type": "application/json",
@@ -17,7 +26,9 @@ const handleCommentSubmit = async (event) => {
     body: JSON.stringify({ text }),
   });
   textarea.value = "";
-  window.location.reload();
+  if (status === 201) {
+    addComment(text);
+  }
 };
 
 if (commentForm) {
