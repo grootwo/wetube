@@ -9,7 +9,7 @@ const addComment = (text, id) => {
   const textSpan = document.createElement("span");
   textSpan.innerText = text;
   const deleteSpan = document.createElement("span");
-  deleteSpan.innerText = "X";
+  deleteSpan.innerText = " X";
   li.appendChild(textSpan);
   li.appendChild(deleteSpan);
   commentList.prepend(li);
