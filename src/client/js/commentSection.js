@@ -13,6 +13,19 @@ const addComment = (text, id) => {
   li.appendChild(textSpan);
   li.appendChild(deleteIcon);
   commentList.prepend(li);
+  deleteIcon.addEventListener("click", handleDeleteClick);
+};
+
+const handleDeleteClick = async (e) => {
+  const comment = e.target.parentElement;
+  const commentId = comment.dataset.id;
+  const reponse = await fetch(`/api/comments/${commentId}/delete`, {
+    method: "DELETE",
+  });
+  if (reponse.status === 200) {
+    comment.remove();
+    console.log("remove done");
+  }
 };
 
 const handleCommentSubmit = async (event) => {
