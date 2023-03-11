@@ -43,7 +43,8 @@ block contents
             each comment in video.comments.reverse()
                 li.video__comment(data-id=comment.id) 
                     span=comment.text
-                    i.far.fa-times-circle
+                    if String(loggedInUser._id) === String(comment.owner._id)
+                        i.far.fa-times-circle
 
 block scripts
     script(src="/static/js/videoPlayer.js") 
