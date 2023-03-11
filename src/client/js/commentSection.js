@@ -8,10 +8,10 @@ const addComment = (text, id) => {
   li.dataset.id = id;
   const textSpan = document.createElement("span");
   textSpan.innerText = text;
-  const deleteSpan = document.createElement("span");
-  deleteSpan.innerText = " X";
+  const deleteIcon = document.createElement("i");
+  deleteIcon.className = "far fa-times-circle";
   li.appendChild(textSpan);
-  li.appendChild(deleteSpan);
+  li.appendChild(deleteIcon);
   commentList.prepend(li);
 };
 
