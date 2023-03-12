@@ -8,10 +8,15 @@
         align-items: center;
     }
     .video__comment {
-        width: 100%;
-        height: 50px;
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        padding: 15px;
+        border-radius: 30px;
         font-size: 25px;
-        color: white;
+        color: $green;
+        background-color: white;
+        margin: 10px;
     }
 }
 
