@@ -15,13 +15,13 @@ input[type="submit"] {
   padding: 15px 20px;
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  background-color: black;
+  background-color: white;
   margin-bottom: 5px;
   font-size: 16px;
-  color: white;
+  color: $green;
   width: 90%;
   &::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+    color: $green;
   }
 }
 
@@ -29,8 +29,8 @@ input[type="submit"],
 .social__btn {
   border-radius: 5px;
   padding: 12px 20px;
-  background-color: white !important;
-  color: rgba($color: $red, $alpha: 1) !important;
+  background-color: $green !important;
+  color: white !important;
   text-align: center !important;
   cursor: pointer;
   display: block;
@@ -42,4 +42,10 @@ input[type="submit"],
     opacity: 0.5;
     pointer-events: none;
   }
+  font-size: 16px;
+}
+
+label {
+  font-weight: 500;
+  font-size: 20px !important;
 }
