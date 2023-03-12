@@ -46,11 +46,19 @@ main {
 }
 
 @keyframes goAway {
-  from {
-    transform: none;
+  0% {
     opacity: 1;
+    transform: translateY(-50px);
   }
-  to {
+  30% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
     transform: translateY(-50px);
     opacity: 0;
   }
@@ -66,8 +74,7 @@ main {
   padding: 10px 20px;
   border-radius: 10000px;
   text-align: center;
-  animation: goAway 0.5s ease-in-out forwards;
-  animation-delay: 5s;
+  animation: goAway 2s ease-in-out forwards;
   &.error {
     background-color: tomato;
     color: white;
