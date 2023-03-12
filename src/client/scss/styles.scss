@@ -33,6 +33,9 @@ body {
   font-family: 'Quicksand', sans-serif;
   background-color: $bg;
   color: $green;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 main {
