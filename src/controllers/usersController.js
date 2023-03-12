@@ -158,6 +158,16 @@ export const postEdit = async (req, res) => {
     body: { email, name, location },
     file,
   } = req;
+  if (email !== req.session.user.email) {
+    console.log("want to change");
+    // 만약 이메일을 변경한다면
+    const exists = await User.find({ email: email });
+    console.log(exists);
+    if (exists.length !== 0) {
+      req.flash("error", "The email already exists");
+      return res.status(403).redirect("/users/edit");
+    }
+  }
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {
