@@ -1,38 +1,41 @@
 extends base.pug
 
 block contents
-    div#videoContainer
-        video(src="/" + video.fileUrl, data-videoid=video._id)
-        div#videoControls
-            div.videoControls__cloumn
-                button#play 
-                    i.fas.fa-play
-                div 
-                    span#currentTime 00:00:00
-                    span  / 
-                    span#totalTime 00:00:00
-                input(type="range", step="1", min="0", value="0")#timeline
-            div.videoControls__cloumn
-                button#mute
-                    i.fas.fa-volume-mute.fa-lg
-                input(type="range", step="0.05", value=0.5, max="1", min="0")#volume
-                button#fullscreenBtn
-                    i.fas.fa-expand.fa-lg
-    div
-        h1=video.title
-        p=video.description 
-        div
-            small=video.createdAt
-            br
-            small Uploaded by 
-            a(href=`/users/${video.owner._id}`)=video.owner.name
-            ul 
-                each hashtag in video.hashtags
-                    li=hashtag
-            span #{video.meta.views} #{video.meta.views === 1 ? "view" : "views"}
-        if String(loggedInUser._id) === String(video.owner._id)
-            a(href=`${video.id}/edit`) Edit &rarr;
-            a(href=`${video.id}/delete`) Delete &rarr;
+    div.watch_video
+        div#videoContainer
+            video(src="/" + video.fileUrl, data-videoid=video._id)
+            div#videoControls
+                div.videoControls__cloumn
+                    button#play 
+                        i.fas.fa-play
+                    div 
+                        span#currentTime 00:00:00
+                        span  / 
+                        span#totalTime 00:00:00
+                    input(type="range", step="1", min="0", value="0")#timeline
+                div.videoControls__cloumn
+                    button#mute
+                        i.fas.fa-volume-mute.fa-lg
+                    input(type="range", step="0.05", value=0.5, max="1", min="0")#volume
+                    button#fullscreenBtn
+                        i.fas.fa-expand.fa-lg
+        div.video-info
+            h1=video.title
+            div#video-owner
+                span Uploaded by
+                a(href=`/users/${video.owner._id}`)=video.owner.name
+            p=video.description 
+            div#video-info__info
+                ul 
+                    each hashtag in video.hashtags
+                        li=hashtag
+                span=video.createdAt
+                span #{video.meta.views} #{video.meta.views === 1 ? "view" : "views"}
+            if String(loggedInUser._id) === String(video.owner._id)
+                br
+                div
+                    a(href=`${video.id}/edit`) Edit &rarr;
+                    a(href=`${video.id}/delete`) Delete &rarr;
     if loggedIn
         div.video__add-comments
             form.video__comment-form#commentForm

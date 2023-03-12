@@ -10,11 +10,14 @@
     video {
         width: 100%;
         height: 100%;
-    }
+    };
+    display: flex;
+    justify-content: center;
 }
 
 #videoControls {
     opacity: 0;
+    color: white;
     &.showing {
         opacity: 1;
     }
