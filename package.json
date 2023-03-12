@@ -4,6 +4,8 @@
   "description": "Study by cloning wetube",
   "main": "index.js",
   "scripts": {
+    "start": "node build/init.js",
+    "build:server": "babel src -d build",
     "dev:server": "nodemon",
     "dev:assets": "webpack"
   },
