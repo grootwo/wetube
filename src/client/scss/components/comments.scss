@@ -1,0 +1,45 @@
+.video__comments {
+    width: 70%;
+    margin: 10px auto;
+    .video__comments__ul {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .video__comment {
+        width: 100%;
+        height: 50px;
+        font-size: 25px;
+        color: white;
+    }
+}
+
+.video__add-comments {
+    margin: 20px 0;
+    width: 70%;
+    margin: 0 auto;
+    .video__comment-form {
+        max-width: none;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        textarea {
+            border: none;
+            width: 500px;
+            height: 80px;
+            &:focus{
+                outline: none;
+            }
+            padding: 10px;
+            font-size: 15px;
+            font: inherit;
+        }
+        button {
+            width: 70px;
+            border: none;
+            background-color: $green;
+            color: white;
+        }
+    }
+}
