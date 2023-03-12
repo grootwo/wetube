@@ -159,11 +159,10 @@ export const postEdit = async (req, res) => {
     file,
   } = req;
   if (email !== req.session.user.email) {
-    console.log("want to change");
     // 만약 이메일을 변경한다면
     const exists = await User.find({ email: email });
-    console.log(exists);
     if (exists.length !== 0) {
+      // 이미 이메일이 존재한다면
       req.flash("error", "The email already exists");
       return res.status(403).redirect("/users/edit");
     }
