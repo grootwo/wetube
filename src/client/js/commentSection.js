@@ -2,6 +2,8 @@ const video = document.querySelector("video");
 const commentForm = document.getElementById("commentForm");
 const commentList = document.querySelector(".video__comments__ul");
 
+const canDeleteComments = document.querySelectorAll("#canDeleteComment");
+
 const addComment = (text, id) => {
   const li = document.createElement("li");
   li.className = "video__comment";
@@ -18,11 +20,12 @@ const addComment = (text, id) => {
 
 const handleDeleteClick = async (e) => {
   const comment = e.target.parentElement;
-  const commentId = comment.dataset.id;
+  const commentId = comment.dataset.id; // 클릭한 댓글의 아이디 가져오기
   const reponse = await fetch(`/api/comments/${commentId}/delete`, {
     method: "DELETE",
   });
   if (reponse.status === 200) {
+    // db에서 데이터 삭제가 정상적으로 완료되었다면
     comment.remove();
   }
 };
@@ -51,4 +54,11 @@ const handleCommentSubmit = async (event) => {
 
 if (commentForm) {
   commentForm.addEventListener("submit", handleCommentSubmit);
+}
+
+if (canDeleteComments) {
+  // 이미 존재하는 댓글 중에 자신이 만든 댓글에만 삭제 버튼 보이기
+  canDeleteComments.forEach((deleteIcon) => {
+    deleteIcon.addEventListener("click", handleDeleteClick);
+  });
 }

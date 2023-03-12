@@ -44,7 +44,7 @@ block contents
                 li.video__comment(data-id=comment.id) 
                     span=comment.text
                     if String(loggedInUser._id) === String(comment.owner._id)
-                        i.far.fa-times-circle
+                        i.far.fa-times-circle#canDeleteComment
 
 block scripts
     script(src="/static/js/videoPlayer.js") 
