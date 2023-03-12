@@ -19,7 +19,8 @@ const addComment = (text, id) => {
 };
 
 const handleDeleteClick = async (e) => {
-  const comment = e.target.parentElement;
+  const div = e.target.parentElement;
+  const comment = div.parentElement;
   const commentId = comment.dataset.id; // 클릭한 댓글의 아이디 가져오기
   const reponse = await fetch(`/api/comments/${commentId}/delete`, {
     method: "DELETE",
