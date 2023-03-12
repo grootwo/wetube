@@ -1,7 +1,7 @@
 extends base.pug
 
 block contents 
-    h3  Change title of the video
+    h3#videoChangeTitle Change the video's information
     form(method="POST")
         input(name="title" type="text", placeholder="Edit title", required maxlength=30, value=video.title)
         input(name="description", type="text", placeholder="Edit description", required, maxlength=100, value=video.description)
