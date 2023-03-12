@@ -13,8 +13,7 @@ header {
     align-items: center;
     li {
       margin-left: 30px;
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 20px;
       text-transform: uppercase;
     }
     i {
@@ -22,7 +21,7 @@ header {
     }
   }
   .header__btn {
-    background-color: white;
+    background-color: $green;
     color: $bg;
     padding: 5px 10px;
     border-radius: 5px;
