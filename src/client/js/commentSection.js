@@ -24,7 +24,6 @@ const handleDeleteClick = async (e) => {
   });
   if (reponse.status === 200) {
     comment.remove();
-    console.log("remove done");
   }
 };
 

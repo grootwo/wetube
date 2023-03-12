@@ -151,6 +151,13 @@ export const createComment = async (req, res) => {
 
 export const deleteComment = async (req, res) => {
   const { id } = req.params;
+  const comment = await Comment.findById(id);
+  const owner = comment.owner;
+  const user = req.session.user._id;
+  if (String(owner) !== String(user)) {
+    req.flash("error", "Not authorized");
+    return res.sendStatus(403);
+  }
   await Comment.findByIdAndDelete(id);
   req.flash("info", "Done");
   return res.status(200).json({ deletedCommentId: id });
