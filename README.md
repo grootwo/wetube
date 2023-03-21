@@ -6,7 +6,7 @@
 <br>
 
 ## 소개
-[Youtube](https://www.youtube.com/) 앱의 레이아웃과 기능을 구현하며 프론트엔드(PUG, SCSS, JS, Express 등) & 백엔드(Node.js, mongoose 등)를 공부하였습니다.  
+[Youtube](https://www.youtube.com/)의 레이아웃과 기능을 구현하며 프론트엔드(PUG, SCSS, JS, Express 등) & 백엔드(Node.js, mongoose 등)를 공부하였습니다.  
 추가로 server, middleware, router, db 등도 활용하였습니다.  
 <br>
 ❗️입력받은 이미지, 동영상을 AWS에 저장하고 연결하는 과정에서 오류가 나서 디버깅 중입니다.  
