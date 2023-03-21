@@ -32,4 +32,4 @@ https://port-0-wetube-clone-by-hwido-p8xrq2mlf5mvzvi.sel3.cloudtype.app/
 * 동영상 업로드/삭제, 정보 편집
 * 사용자, 동영상 검색
 * 동영상 녹화, 썸네일 추출, 다운로드
-* 댓글 업로드/
+* 댓글 업로드/삭제  
